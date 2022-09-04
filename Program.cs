@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.ML;
 using Microsoft.ML.Trainers;
 
@@ -21,10 +22,11 @@ namespace MLTest
 
             Console.WriteLine(trainDataPath);
 
-            IDataView trainData = mlc.Data.LoadFromTextFile<ModelInput>(trainDataPath, '\t', hasHeader: true);
+            var trainData = mlc.Data.LoadFromTextFile<ModelInput>(trainDataPath, '\t', hasHeader: true);
 
             var jobCategory = mlc.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("job", "job") });
             var satisfactionCategory = mlc.Transforms.Categorical.OneHotEncoding(new[]{ new InputOutputColumnPair("satisfac", "satisfac") });
+            
             var featureSet = mlc.Transforms.Concatenate("Features", new[] { "age", "job", "income", "satisfac" });
             var dataPipe = jobCategory.Append(satisfactionCategory).Append(featureSet);
 
@@ -45,12 +47,12 @@ namespace MLTest
             var trainPipe = dataPipe.Append(trainer);
 
             Console.WriteLine("Starting training");
-            ITransformer model = trainPipe.Fit(trainData);
+            var model = trainPipe.Fit(trainData);
 
             Console.WriteLine("Training complete");
 
             // 3. evaluate model
-            IDataView predictions = model.Transform(trainData);
+            var predictions = model.Transform(trainData);
             var metrics = mlc.BinaryClassification.EvaluateNonCalibrated(predictions, "isMale", "Score");
             
             Console.Write("Model accuracy on training data = ");

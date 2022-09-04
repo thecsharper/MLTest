@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLTest", "MLTest.csproj", "{40392909-E815-4139-846E-D45F3250C205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLTest", "MLTest.csproj", "{40392909-E815-4139-846E-D45F3250C205}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{BCD3A864-4105-474B-9515-36AE507F3C8E}"
 	ProjectSection(SolutionItems) = preProject
-		employees_norm_train.txt = employees_norm_train.txt
+		employees_norm_train.tsv = employees_norm_train.tsv
 	EndProjectSection
 EndProject
 Global
